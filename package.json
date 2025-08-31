@@ -1,0 +1,19 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "migrate": "node migrate.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "inquirer": "^9.2.15",
+    "bcrypt": "^5.1.0",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.9.2",
+    "sequelize": "^6.37.3"
+  }
+}
