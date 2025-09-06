@@ -325,7 +325,44 @@ You can easily extend the framework:
 
 ✅ **You’re now ready to build blazing-fast apps with XianFire!**
 
+
+---
+
+## 🔧 Editor Setup (VS Code)
+
+To enable **HTML syntax highlighting** for `.xian` template files in **Visual Studio Code**, add this configuration to your VS Code `settings.json`:
+
+### ✅ Step-by-Step
+
+1. Open VS Code
+2. Press `Ctrl + ,` (Windows/Linux) or `Cmd + ,` (Mac) to open **Settings**
+3. Click the **“Open Settings (JSON)”** icon in the top right (looks like a file with curly braces `{}`)
+4. Add or merge this snippet into your `settings.json`:
+
+```json
+{
+  "files.associations": {
+    "*.xian": "html"
+  }
+}
+```
+
+5. Save the file.
+
+✅ Now all `.xian` files will be highlighted as HTML — including autocomplete, formatting, and error detection!
+
+
+### 🖼️ Example Before & After
+
+| Before (No association)        | After (HTML highlighting)       |
+|-------------------------------|--------------------------------|
+| Plain text, no colors         | ✅ Syntax-highlighted HTML     |
+| No tag autocomplete           | ✅ `<div>`, `class=`, etc. work|
+| Hard to read                  | ✅ Easy to develop templates   |
+
+
 > “Simplicity is the ultimate sophistication.” — Designed for Mindoro State University students to learn, build, and ship without boilerplate headaches.
 
 
 Happy coding! 🚀 
+
