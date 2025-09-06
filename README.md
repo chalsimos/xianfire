@@ -1,35 +1,43 @@
 # XianFire Framework Documentation
 
+> **Engineered by Christian I. Cabrera** — Instructor I, College of Computer Studies  
+> *Lightweight JS Framework for Events-Driven & Integrative Programming 2*
+
+
 ## 🔥 Overview
 
-**XianFire** is a lightweight JS framework for building web applications quickly, intended for Events Driven Programming and Integrative Programming2 for Mindoro State University.  
---Engineered by Christian I. Cabrera => Instructor I, College of Computer Studies
+**XianFire** is a minimal, Lightweight JS Framework for rapidly scaffolding full-stack web applications with built-in authentication, database integration (MySQL or MongoDB), and dynamic code generation.
 
-It includes:
-
-* Express.js server setup
-* Session-based authentication
-* MySQL or MongoDB integration
-* Automatic CRUD templates
-* Migration script for database setup
-
-It is designed for **fast prototyping** and small-to-medium projects.
+Designed for **fast prototyping**, **student projects**, and **small-to-medium applications** — especially for **Events-Driven Programming and Integrative Programming 2** at Mindoro State University.
 
 
-## 📦 Installation
+## ✨ Key Features
 
-### 1. Clone or generate project
+✅ Express.js server with session-based auth  
+✅ MySQL (Sequelize) or MongoDB (Mongoose) support  
+✅ Auto-generated CRUD templates  
+✅ CLI generator for models & controllers (`create:model`, `create:controller`)  
+✅ Built-in migration system  
+✅ `.xian` custom template engine  
+✅ Tailwind CSS ready  
+✅ Zero-config setup
 
-Use the XianFire generator:
+
+## 📦 Installation & Setup
+
+### 1. Generate a new project
 
 ```bash
 npm create xianfires@latest myApp
 ```
 
-You will be prompted to choose:
+You’ll be prompted to choose:
 
-1. **Template type**: Default Template / With CRUD Functions
-2. **Database**: MongoDB / MySQL
+- **Template Type**: `Default Template` or `With CRUD Functions`
+- **Database**: `MongoDB` or `MySQL`
+
+> 💡 *If you don’t specify a name, it defaults to `xianfire-app`.*
+
 
 ### 2. Install dependencies
 
@@ -38,21 +46,23 @@ cd myApp
 npm install
 ```
 
-### 3. Run migration
+
+### 3. Run database migration
 
 ```bash
 npm run migrate
 ```
 
-This will create the database and tables/collections depending on your choice.
+> ✅ Creates database (MySQL) or collections (MongoDB) + syncs models.
 
-### 4. Run the app
+
+### 4. Start development server
 
 ```bash
 npm run dev
 ```
 
-Your app will run at `http://localhost:3000`.
+🌐 App runs at → `http://localhost:3000`
 
 
 ## 🗂️ Project Structure
@@ -60,157 +70,262 @@ Your app will run at `http://localhost:3000`.
 ```
 myApp/
 ├─ controllers/
-│  ├─ authController.js   # Authentication CRUD logic
-│  └─ homeController.js   # Home page
+│  ├─ authController.js      # Login/Register/Dashboard logic (if CRUD)
+│  ├─ homeController.js      # Home page handler
+│  └─ *.js                   # Your generated controllers
 ├─ models/
-│  ├─ db.js               # Sequelize connection (MySQL only)
-│  └─ userModel.js        # User model
+│  ├─ db.js                  # Sequelize connection (MySQL only)
+│  ├─ userModel.js           # Default User model
+│  └─ *.js                   # Your generated models
 ├─ routes/
-│  └─ index.js            # App routes
+│  └─ index.js               # Main route definitions
 ├─ views/
 │  ├─ home.xian
-│  ├─ login.xian
+│  ├─ login.xian             # If CRUD template chosen
 │  ├─ register.xian
-│  ├─ forgotpassword.xian
-│  └─ dashboard.xian
-├─ migrate.js             # Database migration
-├─ index.js               # Server entry
+│  ├─ dashboard.xian
+│  └─ *.xian                 # Your custom views
+├─ public/
+│  └─ tailwind.css           # Pre-configured Tailwind
+├─ create.js                 🆕 CLI generator for models & controllers
+├─ migrate.js                # Database initializer
+├─ index.js                  # Server entry point
 ├─ package.json
 └─ node_modules/
 ```
 
-## ⚡ Features
 
-### 1. Custom template engine
+## ⚡ Core Features
 
-* `.xian` files are simple xian templates.
-* Rendered using `res.render("filename")`.
+### 1. `.xian` Template Engine
 
-Example:
+Render views with `res.render("filename")` — no complex templating needed.
 
+**Example: `views/home.xian`**
 ```html
-<h1>Welcome!</h1>
-<p>This is the home page</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link href="/tailwind.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+  <h1 class="text-3xl font-bold text-center mt-10">Welcome to XianFire 🔥</h1>
+  <p class="text-center mt-4">Home Page</p>
+</body>
+</html>
 ```
 
-### 2. Authentication (if CRUD template chosen)
 
-* **Login**: `/login`
-* **Register**: `/register`
-* **Dashboard**: `/dashboard` (protected)
-* **Logout**: `/logout`
-* **Forgot Password Page**: `/forgot-password`
+### 2. Authentication (CRUD Template Only)
+
+| Route             | Method | Description                     |
+|------------------|--------|---------------------------------|
+| `/`              | GET    | Home page                       |
+| `/login`         | GET    | Render login form               |
+| `/login`         | POST   | Authenticate user               |
+| `/register`      | GET    | Render registration form        |
+| `/register`      | POST   | Create new user                 |
+| `/dashboard`     | GET    | Protected dashboard (session)   |
+| `/logout`        | GET    | Destroy session & redirect      |
+| `/forgot-password`| GET   | Forgot password page (stub)     |
+
 
 ### 3. Database Support
 
-#### MongoDB
+#### 🐘 MySQL (Sequelize)
 
-* Uses `mongoose`
-* Models are simple Mongoose schemas
-* Migration script ensures collections are created
+- Connection defined in `models/db.js`
+- Models use `sequelize.define()`
+- Migration creates DB + tables
 
-#### MySQL
+#### 🍃 MongoDB (Mongoose)
 
-* Uses `Sequelize`
-* `db.js` handles connection
-* Models are Sequelize models
-* Migration script creates database and tables
+- Connection handled in `migrate.js`
+- Models use `mongoose.Schema`
+- Migration ensures collections exist
 
-## 🔧 Example Usage
 
-### 1. Create a new user
+## 🧰 CLI Code Generator (NEW!)
 
-```javascript
+After project setup, generate models and controllers dynamically:
+
+### ➕ Generate a Model
+
+```bash
+npm run create:model Product
+```
+
+→ Creates `models/Product.js`:
+
+```js
+import { DataTypes } from "sequelize";
+import { sequelize } from "./db.js";
+
+export const Product = sequelize.define("Product", {
+  name: { type: DataTypes.STRING, allowNull: false },
+  email: { type: DataTypes.STRING, allowNull: false },
+  password: { type: DataTypes.STRING, allowNull: false }
+});
+
+export { sequelize };
+```
+
+> ✅ Fields are customizable — edit after generation.
+
+
+### ➕ Generate a Controller
+
+```bash
+npm run create:controller productController
+```
+
+→ Creates `controllers/productController.js` with full CRUD:
+
+```js
+import { Product } from "../models/Product.js";
+
+export const getAllProducts = async (req, res) => { ... };
+export const createProduct = async (req, res) => { ... };
+export const getProductById = async (req, res) => { ... };
+export const updateProduct = async (req, res) => { ... };
+export const deleteProduct = async (req, res) => { ... };
+```
+
+> ✅ Auto-imports matching model. Uses PascalCase ↔ camelCase conversion.
+
+
+## 🚀 Usage Examples
+
+### 1. Create a User (MySQL)
+
+```js
 import { User } from './models/userModel.js';
+import bcrypt from 'bcrypt';
 
+const hashed = await bcrypt.hash('mypassword', 10);
 await User.create({
-  name: "John Doe",
-  email: "john@example.com",
-  password: "hashed_password_here"
+  name: "Jane Doe",
+  email: "jane@example.com",
+  password: hashed
 });
 ```
 
-### 2. Authenticate user
 
-```javascript
+### 2. Find and Authenticate User
+
+```js
 import bcrypt from "bcrypt";
 import { User } from "./models/userModel.js";
 
-const user = await User.findOne({ where: { email: "john@example.com" }});
-const match = await bcrypt.compare("password123", user.password);
-
-if(match){
-  console.log("Login successful!");
+const user = await User.findOne({ where: { email: "jane@example.com" } });
+if (user && await bcrypt.compare("mypassword", user.password)) {
+  console.log("✅ Login successful!");
 } else {
-  console.log("Incorrect password!");
+  console.log("❌ Invalid credentials");
 }
 ```
-## 🚀 Adding Routes
 
-Add routes in `routes/index.js`:
 
-```javascript
-router.get("/profile", (req, res) => {
-  if (!req.session.userId) return res.redirect("/login");
-  res.render("profile");
-});
+### 3. Add a New Route
+
+In `routes/index.js`:
+
+```js
+import { getAllProducts } from "../controllers/productController.js";
+
+// Add after existing routes
+router.get("/api/products", getAllProducts);
 ```
 
-## 💾 Migration
+Then visit → `http://localhost:3000/api/products`
 
-* `migrate.js` ensures database and tables/collections exist.
-* MongoDB: creates collections
-* MySQL: creates database + tables
 
-Run migration:
+## 💾 Migration System
+
+Run anytime to ensure DB structure is synced:
 
 ```bash
 npm run migrate
 ```
 
+- **MySQL**: Creates DB (if missing) + drops & recreates tables (`sync({ force: true })`)
+- **MongoDB**: Connects + ensures collections exist by inserting/deleting dummy doc
+
+> ⚠️ **Warning**: MySQL migration wipes existing data. Use `sync()` without `force` in production.
+
+
 ## 🛠️ Configuration
 
-### MySQL (`models/db.js`):
+### MySQL Connection (`models/db.js`)
 
-```javascript
+```js
 import { Sequelize } from "sequelize";
 
-export const sequelize = new Sequelize("myApp", "root", "", {
+export const sequelize = new Sequelize("myApp", "root", "your_password_here", {
   host: "localhost",
   dialect: "mysql",
 });
 ```
 
-### MongoDB:
+> 🔐 Update username/password as needed.
 
-* Default connection in `migrate.js`:
 
-```javascript
+### MongoDB URI (`migrate.js`)
+
+```js
 const DB_URI = `mongodb://127.0.0.1:27017/myApp`;
 ```
 
-## ⚙️ Scripts
+> 🌐 Change host/port if MongoDB runs elsewhere.
 
-| Script            | Description                |
-| ----------------- | -------------------------- |
-| `npm run dev`     | Start server with nodemon  |
-| `npm start`       | Start server               |
-| `npm run migrate` | Run migration for DB setup |
 
----
+## ⚙️ Available Scripts
+
+| Command                  | Description                          |
+|--------------------------|--------------------------------------|
+| `npm run dev`            | Start server with auto-reload (nodemon) |
+| `npm start`              | Start server (production)            |
+| `npm run migrate`        | Initialize/sync database             |
+| `npm run create:model <Name>` | 🆕 Generate Sequelize model      |
+| `npm run create:controller <nameController>` | 🆕 Generate Express controller |
+
 
 ## 🧩 Extending XianFire
 
-* **Add models** in `models/`
-* **Add controllers** in `controllers/`
-* **Add routes** in `routes/`
-* **Add views** in `views/` as `.xian` files
-* Can integrate **Tailwind, Vue, or React** as needed
+You can easily extend the framework:
 
-## 📌 Notes
-
-* Authentication requires **sessions**.
-* Ensure **MySQL or MongoDB** service is running before migration.
+- ✅ **Add Models** → `models/YourModel.js`
+- ✅ **Add Controllers** → `controllers/yourController.js`
+- ✅ **Add Routes** → Import in `routes/index.js`
+- ✅ **Add Views** → `views/yourpage.xian`
+- ✅ **Add CSS/JS** → `public/` folder
+- ✅ **Integrate Frontend** → Vue, React, Svelte via CDN or build tools
 
 
-✅ **XianFire** is now ready to create your apps with minimal boilerplate!
+## 📌 Important Notes
+
+- 🔐 Always ensure **MySQL** or **MongoDB** service is running before `npm run migrate`.
+- 🍪 Authentication relies on **express-session** — configure `secret` in `index.js` for production.
+- 🧪 Generated controllers assume RESTful conventions — adjust routes as needed.
+- 🧑‍💻 For student projects: Great for demos, capstones, and rapid MVP development.
+
+
+## 🎓 Learning Path for Students
+
+1. Generate project → `npm create xianfires@latest myProject`
+2. Choose **CRUD + MySQL** for full-stack practice
+3. Run `npm run migrate` → `npm run dev`
+4. Visit `http://localhost:3000` → Register a user
+5. Use `npm run create:model Book` → `npm run create:controller bookController`
+6. Add routes → Test API endpoints
+7. Customize views → Add Tailwind styling
+8. Deploy to Render/Vercel/Heroku
+
+
+✅ **You’re now ready to build blazing-fast apps with XianFire!**
+
+> “Simplicity is the ultimate sophistication.” — Designed for Mindoro State University students to learn, build, and ship without boilerplate headaches.
+
+
+Happy coding! 🚀 
