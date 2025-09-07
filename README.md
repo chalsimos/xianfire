@@ -1,3 +1,5 @@
+Here's the updated README.md with Electron integration included:
+
 # XianFire Framework Documentation
 
 > **Engineered by Christian I. Cabrera** — Instructor I, College of Computer Studies  
@@ -6,21 +8,23 @@
 
 ## 🔥 Overview
 
-**XianFire** is a minimal, Lightweight JS Framework for rapidly scaffolding full-stack web applications with built-in authentication, database integration (MySQL or MongoDB), and dynamic code generation.
+**XianFire** is a minimal, Lightweight JS Framework for rapidly scaffolding full-stack web applications with built-in authentication, database integration (MySQL or MongoDB), **Electron desktop app support**, and dynamic code generation.
 
-Designed for **fast prototyping**, **student projects**, and **small-to-medium applications** — especially for **Events-Driven Programming and Integrative Programming 2** at Mindoro State University.
+Designed for **fast prototyping**, **student projects**, **desktop applications**, and **small-to-medium applications** — especially for **Events-Driven Programming and Integrative Programming 2** at Mindoro State University.
 
 
 ## ✨ Key Features
 
 ✅ Express.js server with session-based auth  
 ✅ MySQL (Sequelize) or MongoDB (Mongoose) support  
+✅ **Electron desktop app integration**  
 ✅ Auto-generated CRUD templates  
 ✅ CLI generator for models & controllers (`create:model`, `create:controller`)  
 ✅ Built-in migration system  
 ✅ `.xian` custom template engine  
 ✅ Tailwind CSS ready  
-✅ Zero-config setup
+✅ Zero-config setup  
+✅ **Cross-platform desktop builds**
 
 
 ## 📦 Installation & Setup
@@ -31,12 +35,13 @@ Designed for **fast prototyping**, **student projects**, and **small-to-medium a
 npm create xianfires@latest myApp
 ```
 
-You’ll be prompted to choose:
+You'll be prompted to choose:
 
 - **Template Type**: `Default Template` or `With CRUD Functions`
 - **Database**: `MongoDB` or `MySQL`
+- **Electron**: Include Electron for desktop app support (optional)
 
-> 💡 *If you don’t specify a name, it defaults to `xianfire-app`.*
+> 💡 *If you don't specify a name, it defaults to `xianfire-app`.*
 
 
 ### 2. Install dependencies
@@ -62,7 +67,18 @@ npm run migrate
 npm run dev
 ```
 
-🌐 App runs at → `http://localhost:3000`
+🌐 Web app runs at → `http://localhost:3000`
+
+
+### 5. (If Electron chosen) Run desktop app
+
+```bash
+# Development mode (server + Electron)
+npm run electron-dev
+
+# Production build
+npm run electron
+```
 
 
 ## 🗂️ Project Structure
@@ -87,7 +103,9 @@ myApp/
 │  └─ *.xian                 # Your custom views
 ├─ public/
 │  └─ tailwind.css           # Pre-configured Tailwind
-├─ create.js                 🆕 CLI generator for models & controllers
+├─ electron/                 🆕 Electron desktop app files
+│  └─ main.js                # Electron main process
+├─ create.js                 # CLI generator for models & controllers
 ├─ migrate.js                # Database initializer
 ├─ index.js                  # Server entry point
 ├─ package.json
@@ -146,7 +164,24 @@ Render views with `res.render("filename")` — no complex templating needed.
 - Migration ensures collections exist
 
 
-## 🧰 CLI Code Generator (NEW!)
+### 4. 🖥️ Electron Desktop App (Optional)
+
+XianFire includes seamless Electron integration:
+
+- **Single codebase**: Same app runs as web and desktop
+- **Automatic server management**: Express server runs inside Electron
+- **Native menus**: File and View menus with standard shortcuts
+- **Cross-platform**: Build for Windows, macOS, and Linux
+
+**Electron Features:**
+- Native window with proper dimensions (1200x800)
+- Development tools integration
+- Standard application menu
+- Secure context isolation
+- Build system ready for distribution
+
+
+## 🧰 CLI Code Generator
 
 After project setup, generate models and controllers dynamically:
 
@@ -241,6 +276,24 @@ router.get("/api/products", getAllProducts);
 Then visit → `http://localhost:3000/api/products`
 
 
+### 4. Run as Desktop App
+
+If you chose Electron during setup:
+
+```bash
+# Development mode (auto-reload)
+npm run electron-dev
+
+# Production mode
+npm run electron
+
+# Build distributable packages
+npm run dist
+```
+
+→ Creates executable files in `dist/` folder for all platforms
+
+
 ## 💾 Migration System
 
 Run anytime to ensure DB structure is synced:
@@ -280,6 +333,15 @@ const DB_URI = `mongodb://127.0.0.1:27017/myApp`;
 > 🌐 Change host/port if MongoDB runs elsewhere.
 
 
+### Electron Configuration (`package.json`)
+
+The Electron build is pre-configured with:
+- App ID: `com.xianfire.app`
+- Output directory: `dist/`
+- Proper file inclusion/exclusion patterns
+- Multi-platform support
+
+
 ## ⚙️ Available Scripts
 
 | Command                  | Description                          |
@@ -287,8 +349,11 @@ const DB_URI = `mongodb://127.0.0.1:27017/myApp`;
 | `npm run dev`            | Start server with auto-reload (nodemon) |
 | `npm start`              | Start server (production)            |
 | `npm run migrate`        | Initialize/sync database             |
-| `npm run create:model <Name>` | 🆕 Generate Sequelize model      |
-| `npm run create:controller <nameController>` | 🆕 Generate Express controller |
+| `npm run create:model <Name>` | Generate Sequelize model      |
+| `npm run create:controller <nameController>` | Generate Express controller |
+| `npm run electron-dev`   | 🆕 Run Electron app in development   |
+| `npm run electron`       | 🆕 Run Electron app (production)     |
+| `npm run dist`           | 🆕 Build distributable packages      |
 
 
 ## 🧩 Extending XianFire
@@ -301,6 +366,7 @@ You can easily extend the framework:
 - ✅ **Add Views** → `views/yourpage.xian`
 - ✅ **Add CSS/JS** → `public/` folder
 - ✅ **Integrate Frontend** → Vue, React, Svelte via CDN or build tools
+- ✅ **Customize Electron** → Modify `electron/main.js` for native features
 
 
 ## 📌 Important Notes
@@ -308,22 +374,25 @@ You can easily extend the framework:
 - 🔐 Always ensure **MySQL** or **MongoDB** service is running before `npm run migrate`.
 - 🍪 Authentication relies on **express-session** — configure `secret` in `index.js` for production.
 - 🧪 Generated controllers assume RESTful conventions — adjust routes as needed.
-- 🧑‍💻 For student projects: Great for demos, capstones, and rapid MVP development.
+- 🖥️ **Electron**: The same app runs identically in browser and desktop environments
+- 📦 **Distribution**: Use `npm run dist` to create installers for Windows, macOS, and Linux
+- 🧑‍💻 For student projects: Great for demos, capstones, and rapid MVP development
 
 
 ## 🎓 Learning Path for Students
 
 1. Generate project → `npm create xianfires@latest myProject`
-2. Choose **CRUD + MySQL** for full-stack practice
+2. Choose **CRUD + MySQL + Electron** for full-stack + desktop experience
 3. Run `npm run migrate` → `npm run dev`
 4. Visit `http://localhost:3000` → Register a user
 5. Use `npm run create:model Book` → `npm run create:controller bookController`
 6. Add routes → Test API endpoints
 7. Customize views → Add Tailwind styling
-8. Deploy to Render/Vercel/Heroku
+8. Test desktop version → `npm run electron-dev`
+9. Build distributable → `npm run dist`
+10. Deploy web version to Render/Vercel/Heroku
 
-
-✅ **You’re now ready to build blazing-fast apps with XianFire!**
+✅ **You're now ready to build blazing-fast web AND desktop apps with XianFire!**
 
 
 ---
@@ -336,7 +405,7 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 
 1. Open VS Code
 2. Press `Ctrl + ,` (Windows/Linux) or `Cmd + ,` (Mac) to open **Settings**
-3. Click the **“Open Settings (JSON)”** icon in the top right (looks like a file with curly braces `{}`)
+3. Click the **"Open Settings (JSON)"** icon in the top right (looks like a file with curly braces `{}`)
 4. Add or merge this snippet into your `settings.json`:
 
 ```json
@@ -351,6 +420,7 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 
 ✅ Now all `.xian` files will be highlighted as HTML — including autocomplete, formatting, and error detection!
 
+---
 
 ### 🖼️ Example Before & After
 
@@ -361,8 +431,8 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 | Hard to read                  | ✅ Easy to develop templates   |
 
 
-> “Simplicity is the ultimate sophistication.” — Designed for Mindoro State University students to learn, build, and ship without boilerplate headaches.
+> "Simplicity is the ultimate sophistication." — Designed for Mindoro State University students to learn, build, and ship without boilerplate headaches.
 
+**Now with desktop app superpowers! 🚀**
 
-Happy coding! 🚀 
-
+Happy coding!
