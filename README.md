@@ -1,5 +1,3 @@
-Here's the updated README.md with Electron integration included:
-
 # XianFire Framework Documentation
 
 > **Engineered by Christian I. Cabrera** — Instructor I, College of Computer Studies  
@@ -436,4 +434,5 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 **Now with desktop app superpowers! 🚀**
 
 Happy coding!
+
 
