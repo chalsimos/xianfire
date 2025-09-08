@@ -64,7 +64,7 @@ npm run migrate
 ### 4. Start development server
 
 ```bash
-npm run dev
+npm run xian
 ```
 
 🌐 Web app runs at → `http://localhost:3000`
@@ -74,10 +74,10 @@ npm run dev
 
 ```bash
 # Development mode (server + Electron)
-npm run electron-dev
+npm run xian-dev
 
 # Production build
-npm run electron
+npm run xianca
 ```
 
 
@@ -282,10 +282,10 @@ If you chose Electron during setup:
 
 ```bash
 # Development mode (auto-reload)
-npm run electron-dev
+npm run xian-dev
 
 # Production mode
-npm run electron
+npm run xianca
 
 # Build distributable packages
 npm run dist
@@ -346,13 +346,13 @@ The Electron build is pre-configured with:
 
 | Command                  | Description                          |
 |--------------------------|--------------------------------------|
-| `npm run dev`            | Start server with auto-reload (nodemon) |
+| `npm run xian`            | Start server with auto-reload (nodemon) |
 | `npm start`              | Start server (production)            |
 | `npm run migrate`        | Initialize/sync database             |
 | `npm run create:model <Name>` | Generate Sequelize model      |
 | `npm run create:controller <nameController>` | Generate Express controller |
-| `npm run electron-dev`   | 🆕 Run Electron app in development   |
-| `npm run electron`       | 🆕 Run Electron app (production)     |
+| `npm run xian-dev`   | 🆕 Run Electron app in development   |
+| `npm run xianca`       | 🆕 Run Electron app (production)     |
 | `npm run dist`           | 🆕 Build distributable packages      |
 
 
@@ -383,12 +383,12 @@ You can easily extend the framework:
 
 1. Generate project → `npm create xianfires@latest myProject`
 2. Choose **CRUD + MySQL + Electron** for full-stack + desktop experience
-3. Run `npm run migrate` → `npm run dev`
+3. Run `npm run migrate` → `npm run xian`
 4. Visit `http://localhost:3000` → Register a user
 5. Use `npm run create:model Book` → `npm run create:controller bookController`
 6. Add routes → Test API endpoints
 7. Customize views → Add Tailwind styling
-8. Test desktop version → `npm run electron-dev`
+8. Test desktop version → `npm run xian-dev`
 9. Build distributable → `npm run dist`
 10. Deploy web version to Render/Vercel/Heroku
 
@@ -408,7 +408,7 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 3. Click the **"Open Settings (JSON)"** icon in the top right (looks like a file with curly braces `{}`)
 4. Add or merge this snippet into your `settings.json`:
 
-```json
+```jsonnp
 {
   "files.associations": {
     "*.xian": "html"
@@ -436,3 +436,4 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 **Now with desktop app superpowers! 🚀**
 
 Happy coding!
+
