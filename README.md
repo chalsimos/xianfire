@@ -26,13 +26,30 @@ Designed for **fast prototyping**, **student projects**, **desktop applications*
 
 
 ## 📦 Installation & Setup
+### Global Installation
+macOS / Linux:
+```bash
+npm install -g xianfires
+```
+If you get permission errors, either (a) use sudo:
+```bash
+sudo npm install -g xianfires
+```
+or (b) avoid sudo by using nvm or configuring an npm global prefix (preferred).
+Windows (PowerShell as Admin):
+```bash
+npm install -g xianfires
+```
 
 ### 1. Generate a new project
 
 ```bash
 npm create xianfires@latest myApp
 ```
-
+or
+```bash
+create-xianfires myApp
+```
 You'll be prompted to choose:
 
 - **Template Type**: `Default Template` or `With CRUD Functions`
@@ -434,5 +451,6 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 **Now with desktop app superpowers! 🚀**
 
 Happy coding!
+
 
 
