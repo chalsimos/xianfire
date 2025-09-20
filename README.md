@@ -44,11 +44,7 @@ npm install -g xianfires
 ### 1. Generate a new project
 
 ```bash
-npm create xianfires@latest myApp
-```
-or
-```bash
-create-xianfires myApp
+xianfires new myApp
 ```
 You'll be prompted to choose:
 
@@ -93,6 +89,15 @@ npm run xian-dev
 
 # Production build
 npm run xianca
+```
+
+#View Xianfires version
+```bash
+xianfires --version
+```
+# Update your Binaries
+```bash
+xianfires update
 ```
 
 
@@ -451,6 +456,7 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 **Now with desktop app superpowers! 🚀**
 
 Happy coding!
+
 
 
 
