@@ -1,8 +1,11 @@
+
+
 # XianFire Framework Documentation
 
-> **Engineered by Christian I. Cabrera** — Instructor I, College of Computer Studies  
+> **Engineered by Christian I. Cabrera** — Instructor I, College of Computer Studies
 > *Lightweight JS Framework for Events-Driven & Integrative Programming 2*
 
+---
 
 ## 🔥 Overview
 
@@ -10,50 +13,64 @@
 
 Designed for **fast prototyping**, **student projects**, **desktop applications**, and **small-to-medium applications** — especially for **Events-Driven Programming and Integrative Programming 2** at Mindoro State University.
 
+---
 
 ## ✨ Key Features
 
-✅ Express.js server with session-based auth  
-✅ MySQL (Sequelize) or MongoDB (Mongoose) support  
-✅ **Electron desktop app integration**  
-✅ Auto-generated CRUD templates  
-✅ CLI generator for models & controllers (`create:model`, `create:controller`)  
-✅ Built-in migration system  
-✅ `.xian` custom template engine  
-✅ Tailwind CSS ready  
-✅ Zero-config setup  
+✅ Express.js server with session-based auth
+✅ MySQL (Sequelize) or MongoDB (Mongoose) support
+✅ **Electron desktop app integration**
+✅ Auto-generated CRUD templates
+✅ CLI generator for models & controllers (`create:model`, `create:controller`)
+✅ Built-in migration system
+✅ `.xian` custom template engine
+✅ Tailwind CSS ready
+✅ Zero-config setup
 ✅ **Cross-platform desktop builds**
 
+---
 
 ## 📦 Installation & Setup
+
 ### Global Installation
-macOS / Linux:
+
+#### macOS / Linux:
+
 ```bash
 npm install -g xianfires
 ```
-If you get permission errors, either (a) use sudo:
+
+If you get permission errors, either use:
+
 ```bash
 sudo npm install -g xianfires
 ```
-or (b) avoid sudo by using nvm or configuring an npm global prefix (preferred).
-Windows (PowerShell as Admin):
+
+or avoid sudo by using nvm or configuring an npm global prefix.
+
+#### Windows (PowerShell as Admin):
+
 ```bash
 npm install -g xianfires
 ```
+
+---
 
 ### 1. Generate a new project
 
 ```bash
 xianfires new myApp
 ```
+
 You'll be prompted to choose:
 
-- **Template Type**: `Default Template` or `With CRUD Functions`
-- **Database**: `MongoDB` or `MySQL`
-- **Electron**: Include Electron for desktop app support (optional)
+* **Template Type**: `Default Template` or `With CRUD Functions`
+* **Database**: `MongoDB` or `MySQL`
+* **Electron**: Include Electron for desktop app support (optional)
 
 > 💡 *If you don't specify a name, it defaults to `xianfire-app`.*
 
+---
 
 ### 2. Install dependencies
 
@@ -62,6 +79,7 @@ cd myApp
 npm install
 ```
 
+---
 
 ### 3. Run database migration
 
@@ -71,6 +89,7 @@ npm run migrate
 
 > ✅ Creates database (MySQL) or collections (MongoDB) + syncs models.
 
+---
 
 ### 4. Start development server
 
@@ -80,6 +99,7 @@ npm run xian
 
 🌐 Web app runs at → `http://localhost:3000`
 
+---
 
 ### 5. (If Electron chosen) Run desktop app
 
@@ -91,47 +111,54 @@ npm run xian-dev
 npm run xianca
 ```
 
-#View Xianfires version
+---
+
+### View XianFire Version
+
 ```bash
 xianfires --version
 ```
-# Update your Binaries
+
+### Update your Binaries
+
 ```bash
 xianfires update
 ```
 
+---
 
 ## 🗂️ Project Structure
 
 ```
 myApp/
 ├─ controllers/
-│  ├─ authController.js      # Login/Register/Dashboard logic (if CRUD)
-│  ├─ homeController.js      # Home page handler
-│  └─ *.js                   # Your generated controllers
+│  ├─ authController.js
+│  ├─ homeController.js
+│  └─ *.js
 ├─ models/
-│  ├─ db.js                  # Sequelize connection (MySQL only)
-│  ├─ userModel.js           # Default User model
-│  └─ *.js                   # Your generated models
+│  ├─ db.js
+│  ├─ userModel.js
+│  └─ *.js
 ├─ routes/
-│  └─ index.js               # Main route definitions
+│  └─ index.js
 ├─ views/
 │  ├─ home.xian
-│  ├─ login.xian             # If CRUD template chosen
+│  ├─ login.xian
 │  ├─ register.xian
 │  ├─ dashboard.xian
-│  └─ *.xian                 # Your custom views
+│  └─ *.xian
 ├─ public/
-│  └─ tailwind.css           # Pre-configured Tailwind
-├─ electron/                 🆕 Electron desktop app files
-│  └─ main.js                # Electron main process
-├─ create.js                 # CLI generator for models & controllers
-├─ migrate.js                # Database initializer
-├─ index.js                  # Server entry point
+│  └─ tailwind.css
+├─ electron/
+│  └─ main.js
+├─ create.js
+├─ migrate.js
+├─ index.js
 ├─ package.json
 └─ node_modules/
 ```
 
+---
 
 ## ⚡ Core Features
 
@@ -139,7 +166,6 @@ myApp/
 
 Render views with `res.render("filename")` — no complex templating needed.
 
-**Example: `views/home.xian`**
 ```html
 <!DOCTYPE html>
 <html>
@@ -149,286 +175,138 @@ Render views with `res.render("filename")` — no complex templating needed.
 </head>
 <body class="bg-gray-50">
   <h1 class="text-3xl font-bold text-center mt-10">Welcome to XianFire 🔥</h1>
-  <p class="text-center mt-4">Home Page</p>
 </body>
 </html>
 ```
 
+---
 
 ### 2. Authentication (CRUD Template Only)
 
-| Route             | Method | Description                     |
-|------------------|--------|---------------------------------|
-| `/`              | GET    | Home page                       |
-| `/login`         | GET    | Render login form               |
-| `/login`         | POST   | Authenticate user               |
-| `/register`      | GET    | Render registration form        |
-| `/register`      | POST   | Create new user                 |
-| `/dashboard`     | GET    | Protected dashboard (session)   |
-| `/logout`        | GET    | Destroy session & redirect      |
-| `/forgot-password`| GET   | Forgot password page (stub)     |
+| Route        | Method | Description         |
+| ------------ | ------ | ------------------- |
+| `/`          | GET    | Home page           |
+| `/login`     | GET    | Login form          |
+| `/register`  | POST   | Create new user     |
+| `/dashboard` | GET    | Protected dashboard |
+| `/logout`    | GET    | Destroy session     |
 
+---
 
 ### 3. Database Support
 
 #### 🐘 MySQL (Sequelize)
 
-- Connection defined in `models/db.js`
-- Models use `sequelize.define()`
-- Migration creates DB + tables
+* Connection via `models/db.js`
+* Uses `sequelize.define()`
+* Migration syncs DB
 
 #### 🍃 MongoDB (Mongoose)
 
-- Connection handled in `migrate.js`
-- Models use `mongoose.Schema`
-- Migration ensures collections exist
+* Schema via `mongoose.Schema`
+* Auto-creates collections
 
+---
 
-### 4. 🖥️ Electron Desktop App (Optional)
+### 4. 🖥️ Electron Integration
 
-XianFire includes seamless Electron integration:
+Runs Express inside Electron for desktop deployment.
 
-- **Single codebase**: Same app runs as web and desktop
-- **Automatic server management**: Express server runs inside Electron
-- **Native menus**: File and View menus with standard shortcuts
-- **Cross-platform**: Build for Windows, macOS, and Linux
-
-**Electron Features:**
-- Native window with proper dimensions (1200x800)
-- Development tools integration
-- Standard application menu
-- Secure context isolation
-- Build system ready for distribution
-
+---
 
 ## 🧰 CLI Code Generator
 
-After project setup, generate models and controllers dynamically:
-
-### ➕ Generate a Model
+### Generate Model
 
 ```bash
 npm run create:model Product
 ```
 
-→ Creates `models/Product.js`:
-
-```js
-import { DataTypes } from "sequelize";
-import { sequelize } from "./db.js";
-
-export const Product = sequelize.define("Product", {
-  name: { type: DataTypes.STRING, allowNull: false },
-  email: { type: DataTypes.STRING, allowNull: false },
-  password: { type: DataTypes.STRING, allowNull: false }
-});
-
-export { sequelize };
-```
-
-> ✅ Fields are customizable — edit after generation.
-
-
-### ➕ Generate a Controller
+### Generate Controller
 
 ```bash
 npm run create:controller productController
 ```
 
-→ Creates `controllers/productController.js` with full CRUD:
-
-```js
-import { Product } from "../models/Product.js";
-
-export const getAllProducts = async (req, res) => { ... };
-export const createProduct = async (req, res) => { ... };
-export const getProductById = async (req, res) => { ... };
-export const updateProduct = async (req, res) => { ... };
-export const deleteProduct = async (req, res) => { ... };
-```
-
-> ✅ Auto-imports matching model. Uses PascalCase ↔ camelCase conversion.
-
+---
 
 ## 🚀 Usage Examples
 
-### 1. Create a User (MySQL)
+### 1. Create User
 
 ```js
-import { User } from './models/userModel.js';
-import bcrypt from 'bcrypt';
-
-const hashed = await bcrypt.hash('mypassword', 10);
-await User.create({
-  name: "Jane Doe",
-  email: "jane@example.com",
-  password: hashed
-});
+await User.create({ name: "Jane", email: "jane@example.com", password: "hashed" });
 ```
 
-
-### 2. Find and Authenticate User
-
-```js
-import bcrypt from "bcrypt";
-import { User } from "./models/userModel.js";
-
-const user = await User.findOne({ where: { email: "jane@example.com" } });
-if (user && await bcrypt.compare("mypassword", user.password)) {
-  console.log("✅ Login successful!");
-} else {
-  console.log("❌ Invalid credentials");
-}
-```
-
-
-### 3. Add a New Route
-
-In `routes/index.js`:
+### 2. Add Route
 
 ```js
-import { getAllProducts } from "../controllers/productController.js";
-
-// Add after existing routes
 router.get("/api/products", getAllProducts);
 ```
 
-Then visit → `http://localhost:3000/api/products`
-
-
-### 4. Run as Desktop App
-
-If you chose Electron during setup:
-
-```bash
-# Development mode (auto-reload)
-npm run xian-dev
-
-# Production mode
-npm run xianca
-
-# Build distributable packages
-npm run dist
-```
-
-→ Creates executable files in `dist/` folder for all platforms
-
+---
 
 ## 💾 Migration System
-
-Run anytime to ensure DB structure is synced:
 
 ```bash
 npm run migrate
 ```
 
-- **MySQL**: Creates DB (if missing) + drops & recreates tables (`sync({ force: true })`)
-- **MongoDB**: Connects + ensures collections exist by inserting/deleting dummy doc
+⚠️ Wipes MySQL tables if using `force: true`.
 
-> ⚠️ **Warning**: MySQL migration wipes existing data. Use `sync()` without `force` in production.
-
+---
 
 ## 🛠️ Configuration
 
-### MySQL Connection (`models/db.js`)
+### MySQL
 
 ```js
-import { Sequelize } from "sequelize";
-
-export const sequelize = new Sequelize("myApp", "root", "your_password_here", {
-  host: "localhost",
-  dialect: "mysql",
+export const sequelize = new Sequelize("myApp", "root", "password", {
+  host: "localhost", dialect: "mysql",
 });
 ```
 
-> 🔐 Update username/password as needed.
-
-
-### MongoDB URI (`migrate.js`)
+### MongoDB
 
 ```js
 const DB_URI = `mongodb://127.0.0.1:27017/myApp`;
 ```
 
-> 🌐 Change host/port if MongoDB runs elsewhere.
-
-
-### Electron Configuration (`package.json`)
-
-The Electron build is pre-configured with:
-- App ID: `com.xianfire.app`
-- Output directory: `dist/`
-- Proper file inclusion/exclusion patterns
-- Multi-platform support
-
+---
 
 ## ⚙️ Available Scripts
 
-| Command                  | Description                          |
-|--------------------------|--------------------------------------|
-| `npm run xian`            | Start server with auto-reload (nodemon) |
-| `npm start`              | Start server (production)            |
-| `npm run migrate`        | Initialize/sync database             |
-| `npm run create:model <Name>` | Generate Sequelize model      |
-| `npm run create:controller <nameController>` | Generate Express controller |
-| `npm run xian-dev`   | 🆕 Run Electron app in development   |
-| `npm run xianca`       | 🆕 Run Electron app (production)     |
-| `npm run dist`           | 🆕 Build distributable packages      |
+| Command            | Description       |
+| ------------------ | ----------------- |
+| `npm run xian`     | Start dev server  |
+| `npm start`        | Production        |
+| `npm run migrate`  | Sync database     |
+| `npm run xian-dev` | Run Electron dev  |
+| `npm run xianca`   | Run Electron prod |
+| `npm run dist`     | Build packages    |
 
+---
 
 ## 🧩 Extending XianFire
 
-You can easily extend the framework:
+Add custom models, controllers, and views seamlessly.
 
-- ✅ **Add Models** → `models/YourModel.js`
-- ✅ **Add Controllers** → `controllers/yourController.js`
-- ✅ **Add Routes** → Import in `routes/index.js`
-- ✅ **Add Views** → `views/yourpage.xian`
-- ✅ **Add CSS/JS** → `public/` folder
-- ✅ **Integrate Frontend** → Vue, React, Svelte via CDN or build tools
-- ✅ **Customize Electron** → Modify `electron/main.js` for native features
+---
 
+## 🎓 Learning Path
 
-## 📌 Important Notes
-
-- 🔐 Always ensure **MySQL** or **MongoDB** service is running before `npm run migrate`.
-- 🍪 Authentication relies on **express-session** — configure `secret` in `index.js` for production.
-- 🧪 Generated controllers assume RESTful conventions — adjust routes as needed.
-- 🖥️ **Electron**: The same app runs identically in browser and desktop environments
-- 📦 **Distribution**: Use `npm run dist` to create installers for Windows, macOS, and Linux
-- 🧑‍💻 For student projects: Great for demos, capstones, and rapid MVP development
-
-
-## 🎓 Learning Path for Students
-
-1. Generate project → `npm create xianfires@latest myProject`
-2. Choose **CRUD + MySQL + Electron** for full-stack + desktop experience
-3. Run `npm run migrate` → `npm run xian`
-4. Visit `http://localhost:3000` → Register a user
-5. Use `npm run create:model Book` → `npm run create:controller bookController`
-6. Add routes → Test API endpoints
-7. Customize views → Add Tailwind styling
-8. Test desktop version → `npm run xian-dev`
-9. Build distributable → `npm run dist`
-10. Deploy web version to Render/Vercel/Heroku
-
-✅ **You're now ready to build blazing-fast web AND desktop apps with XianFire!**
-
+1. Create project
+2. Run migrate
+3. Add models/controllers
+4. Run Electron build
 
 ---
 
 ## 🔧 Editor Setup (VS Code)
 
-To enable **HTML syntax highlighting** for `.xian` template files in **Visual Studio Code**, add this configuration to your VS Code `settings.json`:
+To enable syntax highlighting for `.xian` files:
 
-### ✅ Step-by-Step
-
-1. Open VS Code
-2. Press `Ctrl + ,` (Windows/Linux) or `Cmd + ,` (Mac) to open **Settings**
-3. Click the **"Open Settings (JSON)"** icon in the top right (looks like a file with curly braces `{}`)
-4. Add or merge this snippet into your `settings.json`:
-
-```jsonnp
+```json
 {
   "files.associations": {
     "*.xian": "html"
@@ -436,27 +314,159 @@ To enable **HTML syntax highlighting** for `.xian` template files in **Visual St
 }
 ```
 
-5. Save the file.
+---
 
-✅ Now all `.xian` files will be highlighted as HTML — including autocomplete, formatting, and error detection!
+# 🧱 CRUD Example: Personal Information Management
+
+A full CRUD demonstration for managing personal info inside a XianFire app.
 
 ---
 
-### 🖼️ Example Before & After
+### 1. Create Model
 
-| Before (No association)        | After (HTML highlighting)       |
-|-------------------------------|--------------------------------|
-| Plain text, no colors         | ✅ Syntax-highlighted HTML     |
-| No tag autocomplete           | ✅ `<div>`, `class=`, etc. work|
-| Hard to read                  | ✅ Easy to develop templates   |
+```bash
+npm run create:model PersonalInfo
+```
 
+**models/PersonalInfo.js**
 
-> "Simplicity is the ultimate sophistication." — Designed for Mindoro State University students to learn, build, and ship without boilerplate headaches.
+```js
+import { DataTypes } from "sequelize";
+import { sequelize } from "./db.js";
 
-**Now with desktop app superpowers! 🚀**
+export const PersonalInfo = sequelize.define("PersonalInfo", {
+  firstName: DataTypes.STRING,
+  lastName: DataTypes.STRING,
+  email: DataTypes.STRING,
+  contactNumber: DataTypes.STRING,
+  address: DataTypes.TEXT,
+  birthdate: DataTypes.DATEONLY,
+});
+```
 
-Happy coding!
+---
 
+### 2. Create Controller
 
+**controllers/personalInfoController.js**
 
+```js
+import { PersonalInfo } from "../models/PersonalInfo.js";
 
+export const getAllPersonalInfo = async (req, res) => {
+  const persons = await PersonalInfo.findAll();
+  res.render("personalinfo_list", { persons });
+};
+
+export const getPersonalInfoForm = (req, res) => res.render("personalinfo_form");
+
+export const createPersonalInfo = async (req, res) => {
+  await PersonalInfo.create(req.body);
+  res.redirect("/personalinfo");
+};
+
+export const editPersonalInfo = async (req, res) => {
+  const person = await PersonalInfo.findByPk(req.params.id);
+  res.render("personalinfo_edit", { person });
+};
+
+export const updatePersonalInfo = async (req, res) => {
+  await PersonalInfo.update(req.body, { where: { id: req.params.id } });
+  res.redirect("/personalinfo");
+};
+
+export const deletePersonalInfo = async (req, res) => {
+  await PersonalInfo.destroy({ where: { id: req.params.id } });
+  res.redirect("/personalinfo");
+};
+```
+
+---
+
+### 3. Add Routes
+
+**routes/index.js**
+
+```js
+import express from "express";
+import {
+  getAllPersonalInfo,
+  getPersonalInfoForm,
+  createPersonalInfo,
+  editPersonalInfo,
+  updatePersonalInfo,
+  deletePersonalInfo,
+} from "../controllers/personalInfoController.js";
+
+const router = express.Router();
+
+router.get("/personalinfo", getAllPersonalInfo);
+router.get("/personalinfo/new", getPersonalInfoForm);
+router.post("/personalinfo/new", createPersonalInfo);
+router.get("/personalinfo/edit/:id", editPersonalInfo);
+router.post("/personalinfo/edit/:id", updatePersonalInfo);
+router.get("/personalinfo/delete/:id", deletePersonalInfo);
+
+export default router;
+```
+
+---
+
+### 4. Create Views
+
+**views/personalinfo_list.xian**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Personal Information</title>
+  <link href="/tailwind.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
+  <div class="container mx-auto py-10">
+    <h1 class="text-3xl font-bold text-blue-700 mb-4 text-center">Personal Records</h1>
+    <a href="/personalinfo/new" class="bg-blue-600 text-white px-4 py-2 rounded">Add New</a>
+    <table class="w-full mt-4 border">
+      <thead class="bg-blue-600 text-white">
+        <tr><th>Name</th><th>Email</th><th>Contact</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        {{persons.map(p=>`
+        <tr class="border-b">
+          <td>${p.firstName} ${p.lastName}</td>
+          <td>${p.email}</td>
+          <td>${p.contactNumber||'—'}</td>
+          <td>
+            <a href="/personalinfo/edit/${p.id}" class="text-blue-600">Edit</a>
+            <a href="/personalinfo/delete/${p.id}" class="text-red-600 ml-2">Delete</a>
+          </td>
+        </tr>`).join('')}}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+```
+
+---
+
+### 5. Migrate & Run
+
+```bash
+npm run migrate
+npm run xian
+```
+
+Then visit:
+➡️ **[http://localhost:3000/personalinfo](http://localhost:3000/personalinfo)**
+
+You’ll have a fully working CRUD UI using Tailwind + XianFire templates.
+
+---
+
+> “Simplicity is the ultimate sophistication.” — Designed for Mindoro State University students to **learn, build, and ship fast** 🚀
+
+**Now with full CRUD and desktop capabilities!**
+
+---
